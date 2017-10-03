@@ -1,0 +1,50 @@
+<section id="full">
+  <br><br><br><br><br><br><br>
+  <section id="cart_items">
+    <div class="container">
+      <simple-notifications></simple-notifications>
+      <div class="breadcrumbs">
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li class="active">Detalle de Transacción</li>
+        </ol>
+      </div>
+      <div class="table-responsive cart_info">
+        <table class="table table-condensed">
+          <thead>
+          <tr class="cart_menu" style="color: white!important;">
+            <th class="description">Producto</th>
+            <th class="description">Descripción</th>
+            <th style="text-align: center" class="description">Precio Unitario</th>
+            <th style="text-align: center" class="description">Cantidad</th>
+            <th style="text-align: center" class="description">Monto</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of data">
+            <td class="description">
+              <h4>{{item.product_name}}</h4>
+            </td>
+            <td class="description">
+              <h4 *ngIf="item.product_description != null">{{item.product_description}}</h4>
+              <h4 *ngIf="item.product_description == null">Descripción no disponible</h4>
+            </td>
+            <td style="text-align: center" class="description">
+              <h4>{{item.product_price.toFixed(0) | detailPipe}} COP</h4>
+            </td>
+            <td style="text-align: center" class="description">
+              <h4>{{item.product_quantity}}</h4>
+            </td>
+            <td style="text-align: center" class="description">
+              <h4>{{item.product_total.toFixed(0) | detailPipe}} COP</h4>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <br><br>
+    </div>
+    <button style="margin-bottom:30px; margin-left: 30px;" class="btn btn-success"><a href="transactions"><i
+      class="fa fa-arrow-left"></i> Volver</a></button>
+  </section>
+</section>

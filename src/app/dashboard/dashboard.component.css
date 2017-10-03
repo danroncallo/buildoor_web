@@ -1,0 +1,124 @@
+#add a:hover {
+  text-decoration: none;
+  color:grey;
+  cursor: pointer;
+}
+
+#add {
+  font-size: 20px;
+}
+
+.last {
+  margin-bottom: 50px;
+}
+
+.fa-trash-o, .fa-edit, .fa-trash {
+  color: grey;
+  font-size: 17px;
+  padding: 2px;
+}
+
+.fa-trash-o:hover, .fa-edit:hover, .fa-trash:hover {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.loginForm input, select {
+  border-radius: 0;
+  border-bottom: solid 1px black;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #333333;
+  outline: 0;
+}
+
+.loginForm input:focus, select:focus{
+  border-radius: 0;
+  border-bottom: solid 1px #f76500;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #333333;
+  outline: 0;
+}
+
+.loginForm select {
+  height: 34px;
+}
+
+.loginForm textarea {
+  border-radius: 0;
+  border-bottom: solid 1px black;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #333333;
+  outline: 0;
+}
+
+.loginForm textarea:focus {
+  border-radius: 0;
+  border-bottom: solid 1px #f76500;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #333333;
+  outline: 0;
+}
+
+.loginForm select:disabled {
+  color:#a2a2a2;
+}
+
+.btn-success {
+  /*margin-top: 5px;*/
+  /*margin-bottom: 5px;*/
+  width: 50%;
+  border-radius: 0;
+  background-color: #f76500;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: 300;
+  box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-success:focus {
+  border-radius: 0;
+  background-color: #f76500;
+  color: white;
+  border: none;
+  box-shadow: none;
+}
+
+.btn-success:hover {
+  border-radius: 0;
+  background-color: #aa4600;
+  color: white;
+  border: none;
+  box-shadow: none;
+}
+
+.modal-content {
+  border: none;
+  border-radius: 0;
+  background: linear-gradient(to left, white,whitesmoke);
+}

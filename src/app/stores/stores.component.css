@@ -1,0 +1,217 @@
+@import '../../assets/css/price-range.css';
+@import '../../assets/css/animate.css';
+@import '../../assets/css/main.css';
+@import '../../assets/css/responsive.css';
+
+
+.img-responsive {
+  display: block;
+  max-width: 100%;
+}
+
+.pricing {
+  position: absolute;
+  right: 23%!important;
+  top: 20%!important;
+}
+
+.overlay {
+  background: none repeat scroll 0 0 #242434;
+  height: 100%;
+  opacity: 0.8;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 9;
+}
+
+.searchform {
+  text-align: center;
+  padding: 5px;
+}
+
+.searchform input {
+  width: 90%;
+  background-color: transparent;
+  border-top: none;
+  border-bottom: solid 1px #ff6400;
+  border-right: none;
+  border-left: none;
+  height: 30px;
+  margin-top: 3px
+}
+
+.searchform button {
+  padding: 4px;
+  width: 10%;
+  box-shadow: 0 0 10px #ff6400;
+}
+
+.searchform button:hover {
+  background-color: #ffb319 !important;
+}
+
+.searchform ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+.searchform ::-moz-placeholder { /* Firefox 19+ */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+.searchform :-ms-input-placeholder { /* IE 10+ */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+.searchform :-moz-placeholder { /* Firefox 18- */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+
+.loginForm input, select {
+  border-radius: 0;
+  border-bottom: solid 1px #FF6400;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #FF6400;
+  outline: 0;
+  height: 34px;
+}
+
+.loginForm ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+.loginForm ::-moz-placeholder { /* Firefox 19+ */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+.loginForm :-ms-input-placeholder { /* IE 10+ */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+.loginForm :-moz-placeholder { /* Firefox 18- */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+
+.loginForm input:focus, select:focus {
+  border-radius: 0;
+  border-bottom: solid 1px #FF6400;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #FF6400;
+  outline: 0;
+  height: 34px;
+}
+
+.loginForm textarea {
+  border-radius: 0;
+  border-bottom: solid 1px #FF6400;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #FF6400;
+  outline: 0;
+}
+
+.loginForm textarea:focus {
+  border-radius: 0;
+  border-bottom: solid 1px #FF6400;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color:#FF6400;
+  outline: 0;
+}
+
+.loginForm select:disabled {
+  color: #a2a2a2;
+}
+
+.btn-success {
+  /*margin-top: 5px;*/
+  /*margin-bottom: 5px;*/
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 150px;
+  border-radius: 0;
+  background-color: #FF6400;
+  color: black;
+  border: none;
+  font-size: 10px;
+  box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-success:focus {
+  border-radius: 0;
+  color: black;
+  border: none;
+  box-shadow: 0 0 10px #ff6400;
+}
+
+.btn-success:hover {
+  border-radius: 0;
+  box-shadow: 0 0 10px #ff6400;
+  color: black;
+  border: none;
+}
+
+
+img {
+  height: 200px;
+  width: auto!important;
+}
+
+.panel-heading h4 a:hover {
+  color:#f76500!important;
+  cursor: pointer;
+}
+
+.panel-heading h4 a {
+  color:#FFFFFF!important;
+  cursor: pointer;
+}
+
+#full {
+  background: url(../../assets/images/background-min.png) no-repeat center center fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.panel .panel-default{
+  background-color: transparent!important;
+}
+
+.category-products .panel-default .panel .panel-heading {
+  background-color: transparent!important;
+}
+
+.panel-heading:focus {
+  color:#FFFFFF!important;
+  background: #a64100;
+}

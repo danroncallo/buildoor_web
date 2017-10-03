@@ -1,0 +1,168 @@
+@import '../../assets/css/price-range.css';
+@import '../../assets/css/animate.css';
+@import '../../assets/css/main.css';
+@import '../../assets/css/responsive.css';
+
+.cart_quantity_input {
+  width: 40px;
+}
+
+img {
+  width: 100%;
+}
+.table-responsive {
+  overflow-x: hidden!important;
+}
+
+@media(max-width: 700px){
+  .table-responsive {
+    overflow-x: scroll!important;
+  }
+}
+
+.btn-success {
+  /*margin-top: 5px;*/
+  /*margin-bottom: 5px;*/
+  margin-left: 40px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 150px;
+  border-radius: 0;
+  background-color: #FF6400;
+  color: black;
+  border: none;
+  font-size: 10px;
+  box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-success:focus {
+  border-radius: 0;
+  color: black;
+  border: none;
+  box-shadow: 0 0 10px #ff6400;
+}
+
+.btn-success:hover {
+  border-radius: 0;
+  box-shadow: 0 0 10px #ff6400;
+  color: black;
+  border: none;
+}
+
+.buttonsDisabled {
+  margin-left: 40px;
+  margin-top: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 150px;
+  border-radius: 0;
+  background-color: darkgray;
+  color: black;
+  border: none;
+  font-size: 10px;
+  box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.buttonsDisabled:hover {
+  color: gray!important;
+  cursor: not-allowed!important;
+}
+
+#full {
+  background: url(../../assets/images/background-min.png) no-repeat center center fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#do_action {
+  margin-bottom: 0px;
+}
+
+#do_action .total_area, #do_action .chose_area {
+  border: 1px solid #ff6400;
+  box-shadow: 0 0 10px #ff6400;
+  color: black;
+  padding: 30px 25px 30px 0;
+  margin-bottom: 80px;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+
+tbody {
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  text-transform: uppercase;
+  border: none;
+}
+
+thead {
+  background: #333333;
+  color: white;
+  text-transform: uppercase;
+}
+
+.loginForm input, select {
+  border-radius: 0;
+  border-bottom: solid 1px #FF6400;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #FF6400;
+  outline: 0;
+  height: 34px;
+}
+
+.loginForm ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+.loginForm ::-moz-placeholder { /* Firefox 19+ */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+.loginForm :-ms-input-placeholder { /* IE 10+ */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+.loginForm :-moz-placeholder { /* Firefox 18- */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+
+table {
+  margin-bottom: 0!important;
+  border-collapse: inherit;
+}
+
+#cart_items .cart_info {
+  border: 1px solid #ff6400;
+  margin-bottom: 50px;
+  box-shadow: 0 0 10px #ff6400;
+}
+
+.breadcrumb > .active {
+  color: #FFFFFF;
+}

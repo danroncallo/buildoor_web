@@ -1,0 +1,252 @@
+@import '../../assets/css/layout.min.css';
+@import '../../assets/css/layout-rtl.min.css';
+@import '../../assets/css/animate.css';
+@import '../../assets/css/main.css';
+@import '../../assets/css/responsive.css';
+
+.images {
+  display: block;
+  width: 100%;
+}
+
+.iphone_img {
+  width: 125%;
+  margin-left: -15%;
+}
+
+.allies_img{
+  width: 100%;
+}
+
+.slogan_img {
+  width: 55%;
+}
+
+.buy_img {
+  width: 30%;
+  padding: 2%;
+  margin: 8%;
+}
+
+.header-home{
+  position: relative;
+  height: 486px
+}
+
+@media (max-width: 767px) {
+  .header-home{
+    background-size: cover;
+    position: relative;
+    height: 100%;
+  }
+  .buy_img {
+    margin: 1%;
+  }
+  .allies_img{
+    margin-bottom: 4%;
+  }
+}
+
+
+@media (max-width: 992px) {
+  .images {
+    height: auto !important;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1199px) {
+  .img-big {
+    height: 408px !important;
+  }
+
+  .img-ultimate {
+    height: 198px !important;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  /*background-color: rgba(48, 48, 48, 0.5);*/
+  background-color: rgba(247, 101, 0, 0.75);
+}
+
+.portfolio-section:hover .overlay {
+  opacity: 1;
+}
+
+.text h4 {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.btn-success {
+  /*margin-top: 5px;*/
+  /*margin-bottom: 5px;*/
+  width: 110px;
+  border-radius: 0;
+  background-color: #f76500;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: 300;
+  box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-success a{
+  /*margin-top: 5px;*/
+  /*margin-bottom: 5px;*/
+  width: 10%;
+  border-radius: 0;
+  background-color: #f76500;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: 300;
+  box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+
+.btn-success:focus {
+  border-radius: 0;
+  background-color: #f76500;
+  color: white;
+  border: none;
+  box-shadow: none;
+}
+
+.btn-success:hover {
+  border-radius: 0;
+  background-color: #aa4600;
+  color: white;
+  border: none;
+  box-shadow: none;
+}
+
+h5 {
+  font-size: 17px;
+  font-weight: 300;
+  font-family: "Source Code Pro";
+  color: white;
+}
+
+hr {
+  border-top: 1px solid #f76500;
+}
+
+.glow{
+  box-shadow: 0 0 10px #f76500;
+}
+
+.welcome-section {
+  background: linear-gradient(to left, #000000, #757373);
+  margin-top: -90px;
+}
+
+@media (max-width: 393px) {
+  .welcome-section {
+    margin-top: -45px;
+  }
+}
+
+.loginForm input, select {
+  border-radius: 0;
+  border-bottom: solid 1px #FF6400;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #FF6400;
+  outline: 0;
+  height: 34px;
+}
+
+.loginForm ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+.loginForm ::-moz-placeholder { /* Firefox 19+ */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+.loginForm :-ms-input-placeholder { /* IE 10+ */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+.loginForm :-moz-placeholder { /* Firefox 18- */
+  color: #FF6400;
+  text-transform: uppercase;
+}
+
+.loginForm input:focus, select:focus {
+  border-radius: 0;
+  border-bottom: solid 1px #FF6400;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #FF6400;
+  outline: 0;
+  height: 34px;
+}
+
+.loginForm textarea {
+  border-radius: 0;
+  border-bottom: solid 1px #FF6400;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #FF6400;
+  outline: 0;
+}
+
+.loginForm textarea:focus {
+  border-radius: 0;
+  border-bottom: solid 1px #FF6400;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color:#FF6400;
+  outline: 0;
+}
+
+.loginForm select:disabled {
+  color: #a2a2a2;
+}
+
+
+

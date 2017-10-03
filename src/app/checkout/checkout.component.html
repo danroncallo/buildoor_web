@@ -1,0 +1,82 @@
+<section id="full">
+<br><br><br><br><br><br><br>
+<section id="cart_items">
+  <div class="container">
+    <simple-notifications></simple-notifications>
+    <div class="breadcrumbs">
+      <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li class="active">Resumen y Pago</li>
+      </ol>
+    </div>
+    <div class="table-responsive cart_info">
+      <table class="table table-condensed">
+        <thead>
+        <tr class="cart_menu">
+          <td class="image">Producto</td>
+          <td class="description"></td>
+          <td  style="text-align: center" class="price">Precio Unitario</td>
+          <td  style="text-align: center" class="quantity">Cantidad</td>
+          <td  style="text-align: center" class="total">Total</td>
+        </tr>
+        </thead>
+        <tbody *ngFor="let item of data">
+        <tr>
+          <td class="cart_product" style="width: 100px" id="{{item.id}}">
+            <a href=""><img src="{{item.full_path}}" alt=""></a>
+          </td>
+          <td class="cart_description">
+            <h4>{{item.product}}</h4>
+          </td>
+          <td class="cart_price" style="text-align: center">
+            <h4>{{item.unitary_price | checkoutPipe}} {{item.currency}}</h4>
+          </td>
+          <td class="cart_quantity" style="text-align: center">
+            <h4>{{item.quantity}}</h4>
+          </td>
+          <td class="cart_total" style="text-align: center">
+            <p class="cart_total_price">{{item.unitary_price * item.quantity | checkoutPipe}} {{item.currency}}</p>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section> <!--/#cart_items-->
+
+<section id="do_action">
+  <div class="container">
+    <div class="col-md-5 col-sm-12 col-xs-12 pull-right">
+      <div class="row">
+        <div class="">
+          <div class="total_area">
+            <ul>
+              <li>Subtotal<span>{{subtotal.toFixed(0) | checkoutPipe}} {{currency}}</span></li>
+              <li>Impuesto<span>{{taxes.toFixed(0) | checkoutPipe}} {{currency}}</span></li>
+              <li>Total <span>{{total.toFixed(0) | checkoutPipe}} {{currency}}</span></li>
+            </ul>
+
+
+            <form method="post" action="https://gateway.payulatam.com/ppp-web-gateway/" accept-charset="UTF-8" #form>
+              <input name="merchantId" type="hidden" value="{{dataResponse.merchantId}}"/>
+              <input name="accountId" type="hidden" value="{{dataResponse.accountId}}"/>
+              <input name="description" type="hidden" value="{{dataResponse.description}}"/>
+              <input name="referenceCode" type="hidden" value="{{dataResponse.referenceCode}}"/>
+              <input name="amount" type="hidden" value="{{dataResponse.amount}}"/>
+              <input name="tax" type="hidden" value="{{dataResponse.tax}}"/>
+              <input name="taxReturnBase" type="hidden" value="{{dataResponse.taxReturnBase}}"/>
+              <input name="shipmentValue" value="0" type="hidden"/>
+              <input name="currency" type="hidden" value="{{dataResponse.currency}}"/>
+              <input name="lng" type="hidden" value="es"/>
+              <input name="displayShippingInformation" type="hidden" value="NO"/>
+              <input name="algorithmSignature" type="hidden" value="MD5"/>
+              <input name="signature" type="hidden" value="{{dataResponse.signature}}"/>
+              <input class="btn btn-success" name="Submit" type="submit" (click)="form.submit()" value="Pagar"/>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</section>

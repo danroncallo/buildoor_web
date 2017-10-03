@@ -1,0 +1,122 @@
+<section id="full">
+  <br><br><br><br><br>
+  <div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-xs-12 pull-right">
+          <form [formGroup]="searchForm" class="searchform">
+            <input formControlName="searchInput" type="text" placeholder="Search"/>
+            <button (click)="search()" type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+  <div>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="left-sidebar">
+            <h2>Todos</h2>
+            <div class="panel-group category-products" id="accordian">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title"><a (click)="getProducts()">Ver todos</a></h4>
+                </div>
+              </div>
+            </div>
+            <div class="brands_products">
+              <h2>Categorías</h2>
+              <div class="panel-group category-products" id="accordian">
+                <div class="panel panel-default">
+                  <div class="panel-heading" *ngFor="let category of categories">
+                    <h4 class="panel-title"><a (click)="filterByCategory(category.id)">{{category.name}}</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="brands_products">
+              <h2>Usos</h2>
+              <div class="panel-group category-products" id="accordian">
+                <div class="panel panel-default">
+                  <div class="panel-heading" *ngFor="let use of uses">
+                    <h4 class="panel-title"><a (click)="filterByUse(use.id)">{{use.name}}</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="brands_products">
+              <h2>Precios</h2>
+              <div class="panel-group category-products" id="accordian" style="height: 200px">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <form [formGroup]="priceForm" class="loginForm">
+                      <div class="col-md-12">
+                        <input formControlName="minPrice" type="number" placeholder="Precio Minimo" style="padding: 5%">
+                      </div>
+                      <div class="col-md-12">
+                        <input formControlName="maxPrice" type="number" placeholder="Precio Máximo" style="padding: 5%">
+                      </div>
+                      <br>
+                      <div class="col-md-12" style="text-align: center">
+                        <button style="margin-top: 40px" (click)="filterByPrice()" class="btn btn-success">Buscar
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-9 padding-right">
+          <simple-notifications></simple-notifications>
+          <h2 class="title text-center">Productos</h2>
+          <div class="features_items">
+            <div class="col-sm-4" *ngFor="let product of data">
+              <div class="product-image-wrapper">
+                <div class="single-products">
+                  <div class="productinfo text-center">
+                    <div class="">
+                      <div *ngIf="product.images.length!=0">
+                        <p style="background: rgba(0, 0, 0, 0.7); color: white; text-align: left;
+                        text-transform: uppercase; position: absolute; z-index: 1;width: 100%; padding: 15px">{{product.name}}</p>
+                        <img style="position: relative" src="{{product.images['0'].full_path}}" alt=""/>
+                        <h2 style="color: #ff6400; text-transform: uppercase;">{{product.price | commaSeparatedNumber}}
+                          {{product.currency}}</h2>
+                      </div>
+                      <div *ngIf="product.images.length==0">
+                        <p style="background: rgba(0, 0, 0, 0.7); color: white; text-align: left;
+                        text-transform: uppercase; position: absolute; z-index: 1;width: 100%; padding: 15px">{{product.name}}</p>
+                        <img src="http://api.buildoor.co/images/products/DefaultProduct.jpg" alt=""/>
+                        <h2 style="color: #ff6400; text-transform: uppercase;">{{product.price}}
+                          {{product.currency}}</h2>
+                      </div>
+                    </div>
+                    <div style="background: transparent; z-index: 2; position: relative">
+                      <a (click)="saveToCart(product.stocks[0].id)" class="btn btn-success">Agregar al Carrito</a>
+                      <a (click)="productDetail(product.id)"
+                         class="btn btn-success">Ver Detalle</a>
+                    </div>
+                  </div>
+                  <!--     <div class="product-overlay">
+                         <div class="overlay-content">
+                           <h2>{{product.price}} {{product.currency}}</h2>
+                           <p>{{product.name}}</p>
+                           <a (click)="saveToCart(product.stocks[0].id)" class="btn btn-default add-to-cart"><i
+                             class="fa fa-shopping-cart"></i>Agregar al Carro</a>
+                           <a style="width: 153px" (click)="productDetail(product.id)" class="btn btn-default add-to-cart"><i
+                             class="fa fa-eye"></i>Ver Detalle</a>
+                         </div>
+                       </div>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

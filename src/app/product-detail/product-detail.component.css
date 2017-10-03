@@ -1,0 +1,97 @@
+@import '../../assets/css/price-range.css';
+@import '../../assets/css/animate.css';
+@import '../../assets/css/main.css';
+@import '../../assets/css/responsive.css';
+
+.item {
+  width: 600px!important;
+}
+
+.item-control {
+  top:45%!important;
+}
+
+#similar-product .carousel-inner .item img {
+  display: inline-block;
+  margin-left: 15px;
+  width: 100%;
+}
+
+#similar-product{
+  margin-top: 0px!important;
+}
+
+#full {
+  background: url(../../assets/images/background-min.png) no-repeat center center fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.loginForm input, select {
+  border-radius: 0!important;
+  border-bottom: solid 1px #FF6400!important;
+  border-top: none!important;
+  border-right: none!important;
+  border-left: none!important;
+  box-shadow: none!important;
+  background: transparent!important;
+  color: #FF6400!important;
+  outline: 0!important;
+  height: 34px!important;
+}
+
+.loginForm select:disabled {
+  color: #a2a2a2;
+}
+
+.btn-success {
+  /*margin-top: 5px;*/
+  /*margin-bottom: 5px;*/
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 150px;
+  border-radius: 0;
+  background-color: #FF6400;
+  color: black;
+  border: none;
+  font-size: 10px;
+  box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-success:focus {
+  border-radius: 0;
+  color: black;
+  border: none;
+  box-shadow: 0 0 10px #ff6400;
+}
+
+.btn-success:hover {
+  border-radius: 0;
+  box-shadow: 0 0 10px #ff6400;
+  color: black;
+  border: none;
+}
+
+.product-information{
+  background: rgba(0,0,0,0.8);
+  border: solid 1px #ff6400;
+  box-shadow: 0 0 10px #ff6400;
+  color:white;
+}
+
+.product-information h2, .product-information label, .product-information p {
+  color: #FFFFFF;
+}

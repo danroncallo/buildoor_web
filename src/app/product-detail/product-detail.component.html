@@ -1,0 +1,62 @@
+<section id="full" *ngIf="isDataReady">
+  <br><br><br><br><br><br><br>
+  <simple-notifications></simple-notifications>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="product-details"><!--product-details-->
+          <div class="col-sm-7">
+            <div id="similar-product" class="carousel slide col-sm-12" data-ride="carousel">
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner" *ngIf="data.images.length!=0">
+                <div style="height: 400px;" *ngFor="let image of data.images; let isFirstRow=first"
+                     [ngClass]="{'active' : isFirstRow}"
+                     class="item">
+                  <a><img style="height:400px; width: 100%; object-fit: cover; object-position: center center"
+                          src="{{image.full_path}}" alt=""></a>
+                </div>
+              </div>
+              <!-- Controls -->
+              <a class="left item-control" href="#similar-product" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+              </a>
+              <a class="right item-control" href="#similar-product" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-5">
+            <div class="product-information"><!--/product-information-->
+              <h2>{{data.name}}</h2>
+              <p>{{data.description}}</p>
+              <span>
+									<span>{{data.price}} {{data.currency}}</span>
+                <div style="padding-top:50px">
+									<label style="color: #FFFFFF">Cantidad:</label>
+                <br>
+                <form [formGroup]="itemQuantity" class="loginForm">
+									<input formControlName="number" type="number" min="1" value="{{quantity}}"/>
+                  <div>
+                    <br>
+									<button (click)="saveToCart(data.stocks['0'].id, quantity)" type="button" class="btn btn-success">
+										<i class="fa fa-shopping-cart"></i>
+										Agregar al Carro
+									</button>
+                  <button (click)="goToStore()"
+                    type="button" class="btn btn-success"><a style="color:#000;">
+										<i class="fa fa-shopping-bag"></i>
+										Seguir Comprando
+									</a></button>
+                  </div>
+                </form>
+                </div>
+								</span>
+              <p style="color:green" *ngIf="data.stocks['0'].quantity > 0"><b>Disponible</b></p>
+              <p style="color:red" *ngIf="data.stocks['0'].quantity === 0"><b>No Disponible</b></p>
+            </div><!--/product-information-->
+          </div>
+        </div><!--/product-details-->
+      </div>
+    </div>
+  </div>
+</section>

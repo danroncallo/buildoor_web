@@ -1,0 +1,348 @@
+<header id="header">
+  <div class="header-bottom">
+    <div class="container-fluid">
+      <div class="">
+        <div class="col-sm-3 col-md-3 col-xs-9">
+          <div class="logo">
+            <a href="store"><img src="../../assets/images/bd_header2.png" alt=""/></a>
+          </div>
+        </div>
+        <div class="col-sm-8 col-md-8 col-xs-9">
+          <ul class="menu-header pull-right">
+            <li *ngIf="logged">
+              <a style="text-transform: capitalize" href="profile"> <i class="fa fa-user"></i> {{name}}
+                {{last_name}}</a>
+            </li>
+            <li *ngIf="logged">
+              <a href="cart"><i class="fa fa-shopping-cart"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="navbar-header" style="margin: 0;">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="mainmenu pull-right col-sm-4 col-xs-12 col-md-3">
+          <ul class="nav navbar-nav collapse" id="navbar-collapse"
+              style="cursor: pointer;text-align: right; background: rgba(0,0,0,0.8); box-shadow: 0 0 15px #ff6400; padding: 20px">
+            <li style="padding-left: 15px"><a href="store"><i class="fa fa-shopping-bag"></i> Tienda</a></li>
+            <li *ngIf="logged"><a href="transactions"><i class="fa fa-money"></i> Transacciones</a></li>
+            <li *ngIf="!logged"><a (click)="showChildModal()"><i class="fa fa-sign-in"></i> Entrar</a></li>
+            <li *ngIf="logged"><a (click)="logout()"><i class="fa fa-sign-out"></i> Salir</a></li>
+            <li *ngIf="!logged"><a (click)="showRegisterModal()"><i class="fa fa-user"></i> Registrarse</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<app-home *ngIf="home"></app-home>
+
+<simple-notifications></simple-notifications>
+<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <!--<h4 class="modal-title pull-left"><i class="fa fa-lock"></i> Iniciar Sesión</h4>-->
+          <button style="padding-right: 10px" type="button" class="close pull-right" aria-label="Close"
+                  (click)="hideChildModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="row">
+          <div style="text-align: center">
+            <img style="width: 15%" src="../../assets/images/icon.png">
+            <h4 style="color: #FF6400"><b>LOGIN</b></h4>
+          </div>
+        </div>
+        <br>
+        <form [formGroup]="loginForm" class="loginForm">
+          <div class="">
+            <button (click)="facebookLogin()" class="socialButtons facebook"><i class="fa fa-facebook"> </i> Ingresa
+              con
+              Facebook
+            </button>
+            <button (click)="googleLogin()" class="socialButtons googleplus"><i class="fa fa-google-plus"> </i> Ingresa con Google +</button>
+          </div>
+          <br>
+          <div class="form-group">
+            <div class="">
+              <input type="text" class="form-control" formControlName="email" required placeholder="Correo">
+              <small style="font-weight: bold;color: #ff0000" *ngIf="loginForm.controls.email.hasError('pattern')">
+                Por favor introduce un correo válido
+              </small>
+              <small style="font-weight: bold;color: #ff0000" *ngIf="loginForm.controls.email.hasError('required') && loginForm.controls.email.dirty">
+                Por favor introduce tu correo
+              </small>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="">
+              <input type="password" class="form-control" formControlName="password" required placeholder="Contraseña">
+              <small style="font-weight: bold;color: #ff0000" *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.dirty">
+                Por favor introduce la contraseña
+              </small>
+            </div>
+          </div>
+          <br>
+          <div class="form-group last">
+            <div class="col-sm-12" style="text-align: center;">
+              <button (click)="login()" type="submit" class="btn btn-success btn-md">
+                ENTRAR
+              </button>
+            </div>
+          </div>
+          <!--<h6 (click)="hideChildModal();showEmailModal()" style="text-align: center"><a style="color: #FF6400"><b>¿Olvidaste-->
+            <!--tu contraseña?</b></a></h6>-->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #emailModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <!--<h4 class="modal-title pull-left"><i class="fa fa-lock"></i> Iniciar Sesión</h4>-->
+          <button style="padding-right: 10px" type="button" class="close pull-right" aria-label="Close"
+                  (click)="hideEmailModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="row">
+          <div style="text-align: center">
+            <img style="width: 15%" src="../../assets/images/icon.png">
+            <h4 style="color: #FF6400"><b>RECUPERACIÓN</b></h4>
+          </div>
+        </div>
+        <br>
+        <form [formGroup]="emailForm" class="loginForm">
+          <div class="form-group">
+            <div class="">
+              <input type="text" class="form-control" formControlName="email" required placeholder="Ingresa tu Correo">
+              <small style="font-weight: bold;color: #ff0000" *ngIf="emailForm.controls.email.hasError('pattern')">
+                Por favor introduce un correo válido
+              </small>
+              <small style="font-weight: bold;color: #ff0000" *ngIf="emailForm.controls.email.hasError('required') && emailForm.controls.email.dirty">
+                Por favor introduce tu correo
+              </small>
+            </div>
+          </div>
+          <div class="form-group last">
+            <div class="col-sm-12" style="text-align: center;">
+              <button type="submit" class="btn btn-success btn-md">
+                Enviar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #registerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body registerModal">
+        <div class="row">
+          <button style="padding-right: 10px" type="button" class="close pull-right" aria-label="Close"
+                  (click)="hideRegisterModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="row">
+          <div style="text-align: center">
+            <img style="width: 5%" src="../../assets/images/icon.png">
+            <h4 style="color: #FF6400"><b>REGISTRO</b></h4>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <button (click)="facebookLogin()" class="socialButtons facebook"><i class="fa fa-facebook"> </i> Ingresa
+            con Facebook
+          </button>
+          <button (click)="googleLogin()" class="socialButtons googleplus"><i class="fa fa-google-plus"> </i> Ingresa con Google +</button>
+        </div>
+        <div class="col-md-8 col-sm-8 col-xs-12">
+          <form [formGroup]="registerForm" class="loginForm">
+            <div class="row">
+              <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <div class="">
+                  <input type="text" class="form-control" formControlName="name" required placeholder="Nombre">
+                  <small style="font-weight: bold;color: #ff0000" *ngIf="registerForm.controls.name.hasError('required') && registerForm.controls.name.dirty">
+                    Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <div class="">
+                  <input type="text" class="form-control" formControlName="last_name" required placeholder="Apellido">
+                  <small style="font-weight: bold;color: #FF0000" *ngIf="registerForm.controls.last_name.hasError('required') && registerForm.controls.last_name.dirty">
+                    Este campo es obligatorio
+                  </small>
+                </div>
+              </div>
+              <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <div class="">
+                  <input type="text" class="form-control" formControlName="identification"
+                         placeholder="Identificación">
+                </div>
+              </div>
+              <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <div class="">
+                  <input type="date" class="form-control" formControlName="birth_date"
+                         placeholder="Fecha de Nacimiento">
+                </div>
+              </div>
+              <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <div class="">
+                  <input type="number" class="form-control" formControlName="phone" placeholder="Teléfono">
+                </div>
+              </div>
+              <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <div class="">
+                  <input type="text" class="form-control" formControlName="email" required
+                         placeholder="Correo Electrónico">
+                  <small style="font-weight: bold;color: #FF0000" *ngIf="registerForm.controls.email.hasError('pattern')">
+                    Por favor introduce un correo válido
+                  </small>
+                  <small style="font-weight: bold;color: #FF0000" *ngIf="registerForm.controls.email.hasError('required') && registerForm.controls.email.dirty">
+                    Por favor introduce tu correo
+                  </small>
+                </div>
+              </div>
+              <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <div class="">
+                  <input type="password" class="form-control" formControlName="password" required
+                         placeholder="Contraseña">
+                  <small style="font-weight: bold;color: #FF0000" *ngIf="registerForm.controls.password.hasError('required') && registerForm.controls.password.dirty">
+                    Por favor introduce la contraseña
+                  </small>
+                </div>
+              </div>
+              <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <div class="">
+                  <input type="password" class="form-control" formControlName="confirm_password"
+                         required placeholder="Confirmación de Contraseña">
+                  <small  style="font-weight: bold;color: #FF0000" *ngIf="registerForm.controls.confirm_password.hasError('required') && registerForm.controls.confirm_password.dirty">
+                    Este campo es requerido
+                  </small>
+                  <small  style="font-weight: bold;color: #FF0000" *ngIf="registerForm.controls.confirm_password.errors && registerForm.controls.confirm_password.dirty">
+                    Las contraseñas no coinciden.
+                  </small>
+                </div>
+              </div>
+              <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <div class="">
+                  <input type="text" class="form-control" formControlName="profession" placeholder="Profesión">
+                </div>
+              </div>
+              <div class="form-group col-md-6 col-sm-6 col-xs-12" *ngFor="let country of countries">
+                <div class="">
+                  <select (change)="getStates(country.id)" formControlName="country">
+                    <option value="" selected disabled>País</option>
+                    <option value="{{country.id}}">{{country.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <!--<div class="form-group col-md-6 col-sm-6 col-xs-12">-->
+              <!--<div class="">-->
+              <!--<select formControlName="state">-->
+              <!--<option value="" selected disabled>Estado</option>-->
+              <!--<option *ngFor="let state of states" value="{{state.id}}">{{state.name}}</option>-->
+              <!--</select>-->
+              <!--</div>-->
+              <!--</div>-->
+              <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <div class="">
+                  <input type="text" class="form-control" formControlName="state" placeholder="Estado">
+                </div>
+              </div>
+              <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                <div class="">
+                  <input type="number" class="form-control" formControlName="postal_code" placeholder="Código Postal">
+                </div>
+              </div>
+              <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                <div class="">
+                  <textarea formControlName="address" placeholder="Dirección"></textarea>
+                </div>
+              </div>
+              <br>
+            </div>
+            <div class="row">
+              <div class="form-group last">
+                <div class="col-sm-12" style="text-align: center;">
+                  <button (click)="saveUser()" type="submit" class="btn btn-success btn-md">
+                    Guardar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<footer id="footer"><!--Footer-->
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-xs-12">
+          <div class="logo" style="text-align: center">
+            <a href="index.html"><img src="../../assets/images/bd_header2.png" alt=""/></a>
+          </div>
+        </div>
+        <div class="texts col-sm-3 col-xs-12">
+          <h5>EMAILS DE CONTACTO</h5><br>
+          <ul>
+            <li><i class="fa fa-envelope"></i> comercial@buildoor.co</li>
+            <li><i class="fa fa-envelope"></i> ingenieria@buildoor.co</li>
+          </ul>
+        </div>
+        <div class="texts col-sm-3 col-xs-12">
+          <h5>TELÉFONOS</h5>
+          <br>
+          <ul>
+            <li><i class="fa fa-phone"></i> 3188486442</li>
+            <li><i class="fa fa-phone"></i> 3182280125</li>
+          </ul>
+        </div>
+        <div class="texts col-sm-3 col-xs-12">
+          <h5>SÍGUENOS</h5>
+          <br>
+          <ul>
+            <li><a href="https://www.facebook.com/buildoorapp" target="_blank"><i class="fa fa-facebook"></i> Facebook</a></li>
+            <li><a href="https://twitter.com/buildoorapp" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li>
+            <li><a href="https://www.instagram.com/buildoor/" target="_blank"><i class="fa fa-instagram"></i> Instagram</a></li>
+            <li><a href="https://www.youtube.com/channel/UC8UcIM5CL98R_J9aGd4Sw1w" target="_blank"><i class="fa fa-youtube"></i> Youtube</a></li>
+            <li><a href="https://www.linkedin.com/in/buildoor-s-a-s-704ba2140/" target="_blank"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-widget">
+    <div class="container">
+      <div class="row" style="text-align: center">
+        <h6>© Buildoor S.A.S. Todos los derechos reservados. | Atención: LUN - SAB 8:00 A.M. a 8:PM.</h6>
+      </div>
+    </div>
+  </div>
+
+</footer><!--/Footer-->

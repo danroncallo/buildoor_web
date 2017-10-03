@@ -1,0 +1,87 @@
+<section id="full">
+  <br><br><br><br><br><br><br>
+  <section id="cart_items">
+    <div class="container">
+      <simple-notifications></simple-notifications>
+      <div class="breadcrumbs">
+        <ol class="breadcrumb">
+          <li><a href="#">Home</a></li>
+          <li class="active">Carro de Compras</li>
+        </ol>
+      </div>
+      <div class="table-responsive cart_info">
+        <table class="table table-condensed">
+          <thead>
+          <tr class="cart_menu">
+            <td class="image">Producto</td>
+            <td class="description"></td>
+            <td style="text-align: center" class="price">Precio Unitario</td>
+            <td style="width: 100px" class="quantity">Cantidad</td>
+            <td></td>
+            <td style="text-align: center" class="total">Total</td>
+            <td></td>
+          </tr>
+          </thead>
+          <tbody *ngFor="let item of data">
+          <tr>
+            <td class="cart_product" style="width: 100px" id="{{item.id}}">
+              <a (click)="productDetail(item.id)"><img src="{{item.full_path}}" alt=""></a>
+            </td>
+            <td class="cart_description">
+              <h4>{{item.product}}</h4>
+              <h6 style="color:red" *ngIf="item.quantity > item.stock_quantity"><b>Cantidad no disponible</b></h6>
+              <h6 style="color:green" *ngIf="item.quantity <= item.stock_quantity"><b>Disponible</b></h6>
+            </td>
+            <td class="cart_price" style="text-align: center">
+              <h4>{{item.unitary_price | cartPipe}} {{item.currency}}</h4>
+            </td>
+            <td class="cart_quantity">
+              <div class="cart_quantity_button cart">
+                <form [formGroup]="itemQuantity" class="loginForm">
+                  <input formControlName="number" class="cart_quantity_input" style="width: 70px"
+                         type="number"
+                         name="quantity"
+                         value="{{item.quantity}}"
+                         min="1"
+                         autocomplete="off" (change)="updateQuantity(item.id)">
+                </form>
+              </div>
+            </td>
+            <td class="cart_delete">
+              <a style="background: #FF6400; cursor:pointer;" class="cart_quantity_delete" (click)="deleteOne(item.id, item.quantity)"><i class="fa fa-minus"></i></a>
+              <a style="background: #FF6400; cursor:pointer;" class="cart_quantity_delete" (click)="addOne(item.id, item.quantity)"><i class="fa fa-plus"></i></a>
+            </td>
+            <td class="cart_total" style="text-align: center">
+              <p class="cart_total_price">{{item.unitary_price * item.quantity | cartPipe}} {{item.currency}}</p>
+            </td>
+            <td class="cart_delete">
+              <a style="background: #FF6400; cursor:pointer;" class="cart_quantity_delete" (click)="deleteItem(item.id)"><i class="fa fa-times"></i></a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section> <!--/#cart_items-->
+
+  <section id="do_action">
+    <div class="container">
+      <div class="col-md-5 col-sm-12 col-xs-12 pull-right">
+        <div class="row">
+          <div class="">
+            <div class="total_area">
+              <ul>
+                <li>Subtotal<span>{{subtotal.toFixed(0) | cartPipe}} {{currency}}</span></li>
+                <li>Impuesto<span>{{taxes.toFixed(0) | cartPipe}} {{currency}}</span></li>
+                <li>Total <span>{{total.toFixed(0) | cartPipe}} {{currency}}</span></li>
+              </ul>
+              <button (click)="goToStore()" class="btn btn-success btn-md">Comprar</button>
+              <button *ngIf="buy === true" (click)="checkout()" class="btn btn-success pull-right">Check Out</button>
+              <button *ngIf="buy === false" class="btn buttonsDisabled check_out pull-right">Check Out</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

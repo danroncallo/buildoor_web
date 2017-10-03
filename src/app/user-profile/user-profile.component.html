@@ -1,0 +1,410 @@
+<div *ngIf="isDataReady">
+
+  <section class="full">
+    <br><br><br><br><br><br><br><br><br>
+    <div class="loading-spinner" *ngIf="loading$ | async"></div>
+    <!--<section *ngIf="(profile === false) && (edit === true) && (changePassword === false)  && (addWorks === false)">-->
+    <div *ngIf="!profile && edit && !changePassword && !addWorks">
+      <div class="container">
+        <simple-notifications></simple-notifications>
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="text-center" *ngIf="image==null">
+              <img src="http://www.buildoor.co/api/images/avatars/DefaultProfile.jpg"
+                   class="avatar img-circle img-thumbnail" alt="avatar">
+            </div>
+            <div class="text-center" *ngIf="image!=null">
+              <img src="{{data.image.full_path}}" class="avatar img-circle img-thumbnail" alt="avatar"
+                   style="height: 290px">
+            </div>
+            <div class="text-center">
+              <h6 style="color: white"><b>Cambia tu foto de perfil</b></h6>
+              <input type="file" class="text-center center-block well well-sm"
+                     (change)="avatarImage($event)" placeholder="Seleccione archivo" accept=".jpg,.png">
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-md-offset-1 col-sm-offset-1 col-xs-12 personal-info"
+               style="background: rgba(0, 0, 0, 0.8); padding-bottom: 30px;border: solid 1px #ff6400; box-shadow: 0 0 10px #ff6400">
+            <h3 style="color:white">Perfil</h3>
+            <form [formGroup]="registerForm" class="loginForm">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                  <div class="">
+                    <input type="text" class="form-control" formControlName="name" required placeholder="Nombre">
+                    <small style="font-weight: bold;color: #ff0000"
+                           *ngIf="registerForm.controls.name.hasError('required') && registerForm.controls.name.dirty">
+                      Este campo es obligatorio
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                  <div class="">
+                    <input type="text" class="form-control" formControlName="last_name" required placeholder="Apellido">
+                    <small style="font-weight: bold;color: #FF0000"
+                           *ngIf="registerForm.controls.last_name.hasError('required') && registerForm.controls.last_name.dirty">
+                      Este campo es obligatorio
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                  <div class="">
+                    <input type="date" class="form-control" formControlName="birth_date" required
+                           placeholder="Fecha de Nacimiento">
+                  </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                  <div class="">
+                    <input type="text" class="form-control" formControlName="identification" required
+                           placeholder="Identificación">
+                  </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                  <div class="">
+                    <input disabled type="text" class="form-control" formControlName="email" required
+                           placeholder="Correo Electrónico">
+                  </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                  <div class="">
+                    <input type="text" class="form-control" formControlName="phone" required placeholder="Teléfono">
+                  </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                  <div class="">
+                    <input type="text" class="form-control" formControlName="profession" required
+                           placeholder="Profesión">
+                  </div>
+                </div>
+                <!--<div class="form-group col-md-6 col-sm-6 col-xs-12" *ngFor="let country of countries">-->
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                  <div class="">
+                    <!--<select (change)="getStates(country.id)" formControlName="country">-->
+                    <select type="text" formControlName="country">
+                      <option *ngFor="let country of countries" [value]="country.id"
+                              [selected]="country.name == selected_country ? true: null">{{country.name}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <!--[selected]="state.name == selected_state ? true: null">{{state.name}}-->
+                <!--<div class="form-group col-md-6 col-sm-6 col-xs-12">-->
+                <!--<div class="">-->
+                <!--<select type="text" formControlName="state">-->
+                <!--<option *ngFor="let state of states" [value]="state.id"-->
+                <!--[selected]="state.name == selected_state ? true: null">{{state.name}}-->
+                <!--</option>-->
+                <!--</select>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                  <div class="">
+                    <input type="text" class="form-control" formControlName="state" placeholder="Estado">
+                  </div>
+                </div>
+                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                  <div class="">
+                    <input type="text" class="form-control" formControlName="postal_code" placeholder="Código Postal">
+                  </div>
+                </div>
+                <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                  <div class="">
+                    <textarea formControlName="address" placeholder="Dirección"></textarea>
+                  </div>
+                </div>
+                <br>
+                <div class="form-group last">
+                  <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="text-align: center;">
+                    <button (click)="updateUser()"
+                            class="btn btn-success btn-md col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                      Guardar
+                    </button>
+                    <button (click)="editFalse();profileTrue()"
+                            class="btn btn-cancel btn-md col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                      Cancelar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<section *ngIf="(profile === true) && (edit === false) && (changePassword === false) && (addWorks === false)">-->
+    <div *ngIf="profile && !edit && !changePassword && !addWorks">
+      <div class="container">
+        <simple-notifications></simple-notifications>
+        <div class="row">
+          <div class="col-md-8 col-sm-8 col-xs-12"
+               style="margin-top:10px;background: rgba(0, 0, 0, 0.8); color:white; line-height: 1.8; padding-bottom: 15px; padding-top: 15px; border: solid 1px #ff6400;box-shadow: 0 0 10px #ff6400">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+              <div class="text-center" *ngIf="image==null">
+                <img src="http://api.buildoor.co/images/avatars/DefaultProfile.jpg"
+                     class="avatar img-circle" alt="avatar" style="height: 275px; object-fit: cover;">
+              </div>
+              <div class="text-center" *ngIf="image!=null">
+                <img src="{{data.image.full_path}}" class="avatar img-circle" alt="avatar"
+                     style="height: 275px; object-fit: cover;">
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 personal-info">
+              <h3>
+                {{data.name}} {{data.last_name}}
+              </h3>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="">
+                  <label>Identificación: {{data.identification}}</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="">
+                  <label>Fecha de Nacimiento: {{data.birth_date|date:'dd/MM/yyyy'}}</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="">
+                  <label>Teléfono: {{data.phone}}</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="">
+                  <label>Correo Electrónico: {{data.email}}</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="">
+                  <label>Profesión: {{data.profession}}</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="">
+                  <label *ngIf="data.country !== null">País: {{data.country.name}}</label>
+                  <label *ngIf="data.country === null">País: No especificado</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="">
+                  <label>Estado: {{data.state}}</label>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="">
+                  <label>Dirección: {{data.address}}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2 col-sm-2 col-md-offset-2 col-sm-offset-2 col-xs-12"
+               style="margin-top:10px;background: rgba(0, 0, 0, 0.8); color:white; border: solid 1px #ff6400; box-shadow: 0 0 10px #ff6400">
+            <h3>Opciones</h3>
+            <ul style="padding: 10px; font-size: 14px; line-height: 1.5">
+              <li><a (click)="editTrue();profileFalse()">
+                <i class="fa fa-edit"></i> Editar Perfil</a></li>
+              <li><a (click)="addWorksTrue();profileFalse();getMyPortfolio()"><i class="fa fa-plus-circle"></i> Agregar
+                Trabajos</a></li>
+              <li><a *ngIf="!private" (click)="privateTrue()">
+                <i class="fa fa-unlock"></i> Perfil Público</a></li>
+              <li><a *ngIf="private" (click)="privateFalse()">
+                <i class="fa fa-lock"></i> Perfil Privado</a></li>
+              <li><a (click)="changePasswordTrue();profileFalse()">
+                <i class="fa fa-key"></i> Cambiar Contraseña</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<section *ngIf="(profile === false) && (edit === false) && (changePassword === true) && (addWorks === false)">-->
+    <div *ngIf="!profile && !edit && changePassword && !addWorks">
+      <div class="container">
+        <simple-notifications></simple-notifications>
+        <div class="row">
+          <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="text-center" *ngIf="image==null">
+              <img src="http://www.buildoor.co/api/images/avatars/DefaultProfile.jpg"
+                   class="avatar img-circle img-thumbnail" alt="avatar">
+            </div>
+            <div class="text-center" *ngIf="image!=null">
+              <img src="{{data.image.full_path}}" class="avatar img-circle img-thumbnail" alt="avatar">
+            </div>
+          </div>
+          <div class="col-md-5 col-sm-5 col-xs-12 personal-info"
+               style="margin-top:10px;background: rgba(0, 0, 0, 0.8); padding-bottom: 30px; border: solid 1px #ff6400; box-shadow: 0 0 10px #ff6400">
+            <h3 style="color: #FFFFFF;">Cambiar Contraseña</h3>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <form [formGroup]="changePasswordForm" class="loginForm">
+                <div class="form-group">
+                  <div class="">
+                    <input type="password" class="form-control" formControlName="old_password" required
+                           placeholder="Contraseña Anterior">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="">
+                    <input (focus)="invalidData=false" type="password" class="form-control"
+                           formControlName="new_password"
+                           required
+                           placeholder="Contraseña Nueva">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input (focus)="invalidData=false" type="password" class="form-control"
+                         formControlName="confirm_password"
+                         required placeholder="Confirmación de Contraseña">
+                  <div
+                          *ngIf="changePasswordForm.controls.confirm_password.errors && changePasswordForm.controls.confirm_password.dirty"
+                          class="text-center">
+                    <small>
+                      No coinciden las contraseñas
+                    </small>
+                  </div>
+                </div>
+                <br>
+                <div class="text-center">
+                  <h5 *ngIf="invalidData">
+                    <small><strong> Datos incorrectos </strong></small>
+                  </h5>
+                </div>
+                <div class="form-group last">
+                  <div class="col-xs-12 col-md-12 col-lg-12 col-sm-12 text-center">
+                    <button (click)="changePasswordMethod()" [disabled]="!changePasswordForm.valid"
+                            class="btn btn-success btn-md col-md-6 col-xs-12 col-sm-6">
+                      Guardar
+                    </button>
+                    <button (click)="changePasswordFalse();profileTrue()" type="submit"
+                            class="btn btn-cancel btn-md col-md-6 col-xs-12 col-sm-6">
+                      Cancelar
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<section *ngIf="(profile === false) && (edit === false) && (changePassword === false) && (addWorks === true)">-->
+    <div *ngIf="!profile && !edit && !changePassword && addWorks">
+      <div class="container">
+        <simple-notifications></simple-notifications>
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12 col-lg-6"
+               style="background: rgba(0, 0, 0, 0.8); padding-bottom: 30px; border: solid 1px #ff6400; box-shadow: 0 0 10px #ff6400">
+            <h3 style="color: white">Portafolio</h3>
+            <br>
+            <div id="cart_items">
+              <div class="table-responsive cart_info">
+                <table class="table table-condensed">
+                  <thead>
+                  <tr class="cart_menu">
+                    <td class="image">Trabajo</td>
+                    <td class="description">Descripción</td>
+                    <td></td>
+                  </tr>
+                  </thead>
+                  <tbody *ngFor="let work of portfolio">
+                  <tr id="{{work.id}}">
+                    <td class="cart_product">
+                      <h4 style="width: 100px">{{work.name}}</h4>
+                    </td>
+                    <td class="cart_description">
+                      <h4 style="width: 100px">{{work.description}}</h4>
+                    </td>
+                    <td class="cart_delete">
+                      <a style="background: #FF6400; cursor:pointer;" class="cart_quantity_delete" (click)="deleteWork(work.id)"><i class="fa fa-times"></i></a>
+                      <a style="background: #FF6400; cursor:pointer;" class="cart_quantity_delete" (click)="goToDetail(work.id)"><i class="fa fa-image"></i></a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!--<div *ngIf="images.length!=0">-->
+              <div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+                   aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <div id="similar-product" class="carousel slide col-sm-12" data-ride="carousel">
+                        <div class="carousel-inner" *ngIf="images.length!=0">
+
+                          <!--<div class="item active">-->
+                          <!--<a href=""><img src="../../assets/images/home/bd_p1.png" alt=""></a>-->
+                          <!--</div>-->
+                          <!--<div class="item">-->
+                          <!--<a href=""><img src="../../assets/images/home/bd_p1.png" alt=""></a>-->
+                          <!--</div>-->
+                          <!--<div class="item">-->
+                          <!--<a href=""><img src="../../assets/images/home/bd_p1.png" alt=""></a>-->
+                          <!--</div>-->
+                          <div *ngFor="let image of images; let isFirstRow=first" [ngClass]="{'active' : isFirstRow}"
+                               class="item">
+                            <a href=""><img src="{{image.full_path}}" width="750" height="300" alt=""></a>
+                          </div>
+
+                        </div>
+                        <!-- Controls -->
+                        <a class="left item-control" href="#similar-product" data-slide="prev">
+                          <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right item-control" href="#similar-product" data-slide="next">
+                          <i class="fa fa-angle-right"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!--</div>-->
+            </div>
+          </div>
+          <div class="col-md-5 col-md-offset-1 col-sm-6 col-lg-offset-1 col-lg-5 col-xs-12"
+               style="margin-top:10px;background: rgba(0, 0, 0, 0.8); padding-bottom: 30px; border:solid 1px #ff6400; box-shadow: 0 0 10px #ff6400">
+            <h3 style="color: white">Agregar Trabajos</h3>
+            <br>
+            <form [formGroup]="portfolioForm" class="loginForm">
+              <div class="form-group">
+                <div class="">
+                  <input type="text" class="form-control" formControlName="name" required
+                         placeholder="Nombre del Trabajo">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="">
+              <textarea type="text" class="form-control" formControlName="description" required
+                        placeholder="Descripción"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label style="color:#ff6400;margin-left: 2%" class="control-label">GALERÍA</label>
+                <image-upload formControlName="imagesUpload" ngDefaultControl
+                              [max]="20"
+                              [maxFileSize]="5000000"
+                              [buttonCaption]="'Seleccionar Imágenes'"
+                              [dropBoxMessage]="'Arrastra tus imágenes aquí!'"
+                              [fileTooLargeMessage]="'Imagen muy pesada!'"
+                              (onFileUploadFinish)="productImages($event)"
+                ></image-upload>
+              </div>
+              <div class="form-group last">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12" style="text-align: center;">
+                  <button type="submit" (click)="savePortfolio()"
+                          class="btn btn-success btn-md col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                    Guardar
+                  </button>
+                  <button (click)="addWorksFalse();profileTrue()" type="submit"
+                          class="btn btn-cancel btn-md col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

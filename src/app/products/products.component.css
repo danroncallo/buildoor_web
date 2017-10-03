@@ -1,0 +1,162 @@
+#add a:hover {
+  text-decoration: none;
+  color: grey;
+  cursor: pointer;
+}
+
+#add {
+  font-size: 20px;
+}
+
+.last {
+  margin-bottom: 50px;
+}
+
+.fa-trash-o, .fa-edit, .fa-eye {
+  color: grey;
+  font-size: 17px;
+  padding: 2px;
+}
+
+.fa-trash-o:hover, .fa-edit:hover, .fa-eye:hover {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.loginForm input, select {
+  border-radius: 0;
+  border-bottom: solid 1px black;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #333333;
+  outline: 0;
+}
+
+.loginForm input:focus, select:focus {
+  border-radius: 0;
+  border-bottom: solid 1px #f76500;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #333333;
+  outline: 0;
+}
+
+.loginForm select {
+  height: 34px;
+}
+
+.loginForm textarea {
+  border-radius: 0;
+  border-bottom: solid 1px black;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #333333;
+  outline: 0;
+}
+
+.loginForm textarea:focus {
+  border-radius: 0;
+  border-bottom: solid 1px #f76500;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  box-shadow: none;
+  background: transparent;
+  color: #333333;
+  outline: 0;
+}
+
+.loginForm select:disabled {
+  color: #a2a2a2;
+}
+
+.btn-success {
+  /*margin-top: 5px;*/
+  /*margin-bottom: 5px;*/
+  width: 50%;
+  border-radius: 0;
+  background-color: #f76500;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: 300;
+  box-shadow: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.btn-success:focus {
+  border-radius: 0;
+  background-color: #f76500;
+  color: white;
+  border: none;
+  box-shadow: none;
+}
+
+.btn-success:hover {
+  border-radius: 0;
+  background-color: #aa4600;
+  color: white;
+  border: none;
+  box-shadow: none;
+}
+
+.modal-content {
+  border: none;
+  border-radius: 0;
+  background: linear-gradient(to left, white, whitesmoke);
+}
+
+ss-multiselect-dropdown .btn-default{
+  background: transparent!important;
+  border-radius: 0!important;
+  border-bottom: solid 1px black!important;
+  border-top: none!important;
+  border-right: none!important;
+  border-left: none!important;
+}
+
+.loading-spinner {
+  margin: auto;
+  /*display: inline-block;*/
+  /*height: 60px;*/
+  /*width: 60px;*/
+  border: 1em solid rgba(0,0,0,0.5);
+  border-bottom-color: transparent;
+  border-radius: 0%;
+  /*animation: 1.5s loader linear infinite;*/
+  /*position: relative;*/
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
+  display: block;
+  align-content: center;
+  align-items: center;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
